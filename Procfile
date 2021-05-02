@@ -1,1 +1,1 @@
-web: gunicorn powered.wsgi
+web:gunicorn powered.wsgi
