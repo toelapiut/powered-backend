@@ -1,6 +1,5 @@
 import requests
 from decouple import config
-from requests.auth import HTTPBasicAuth
 
 base_url = config('BASE_URL')
 
@@ -8,8 +7,7 @@ base_url = config('BASE_URL')
 def header_config():
 	api_key = config('API_KEY')
 	headers = {"Accept": "application/json"}
-	auth = HTTPBasicAuth('api_key', '{}'.format(api_key))
-	return api_key, headers, auth
+	return api_key, headers
 
 
 def stock_url(ticker, start_date, end_date):
@@ -30,13 +28,13 @@ def market_url():
 
 def stock_endpoint(ticker, start_date, end_date):
 	url = stock_url(ticker, start_date, end_date)
-	api_key, headers, auth = header_config()
-	res = requests.get(url=url, headers=headers, auth=auth)
+	api_key, headers = header_config()
+	res = requests.get(url=url+'&api_key={}'.format(api_key), headers=headers)
 	return res.json()
 
 
 def market_endpoint():
 	url = market_url()
-	api_key, headers, auth = header_config()
+	api_key, headers = header_config()
 	res = requests.get(url=url+'api_key={}'.format(api_key), headers=headers)
 	return res.json()
