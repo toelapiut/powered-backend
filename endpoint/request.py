@@ -12,11 +12,11 @@ def header_config():
 
 def stock_url(ticker, start_date, end_date):
 	if start_date is not None and end_date is not None:
-		url = '{}/datasets/WIKI/{}.json?start_date={}&end_date={}&order=asc&column_index=4&collapse=quarterly&' \
+		url = '{}/datasets/WIKI/{}.json?start_date={}&end_date={}&order=asc&column_index=4&collapse=daily&' \
 			'transformation=rdiff'.format(base_url, ticker, start_date, end_date)
 		return url
 	elif start_date is None or end_date is None:
-		url = '{}/datasets/WIKI/{}.json?&order=asc&column_index=4&collapse=quarterly&transformation=rdiff'.format(
+		url = '{}/datasets/WIKI/{}.json?&order=asc&column_index=4&collapse=daily&transformation=rdiff'.format(
 			base_url, ticker)
 		return url
 
