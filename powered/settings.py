@@ -68,6 +68,15 @@ CORS_ALLOW_METHODS = [
     'PUT',
 ]
 
+CORS_ALLOW_HEADERS = (
+        'x-requested-with',
+        'content-type',
+        'accept',
+        'origin',
+        'authorization',
+        'x-csrftoken'
+)
+
 ROOT_URLCONF = 'powered.urls'
 
 TEMPLATES = [
